@@ -20,9 +20,9 @@ function App() {
     <>
     <Container>
       <Title>COMPROMISSOS</Title>
-    </Container>
+      </Container>
     <ToastContainer autoClose={3000} position={toast.POSITION.BOTTOM_LEFT} />
-    <GlobalStyle/>
+    <GlobalStyle />
     </>
   );
 }
