@@ -43,3 +43,14 @@ export const updateUser = (req, res) => {
         return res.status(200).json("Compromisso atualizado com sucesso!");
     });
 };
+
+export const deleteUser = (req, res) => {
+    const search = 
+        "DELETE FROM compromissos WHERE `id` = ?";
+
+    db.query(search, [req.params.id], (err) => {
+        if(err) return res.json(err);
+
+        return res.status(200).json("Compromisso deletado com sucesso!");
+    });
+};
