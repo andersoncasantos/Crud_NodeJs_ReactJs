@@ -48,9 +48,10 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
 
       user.nome.value = onEdit.nome;
       user.descricao.value = onEdit.descricao;
-      user.data_hora.value = onEdit.data_hora;
+      user.data_nascimento.value = onEdit.data_hora;
     }
   }, [onEdit]);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -79,38 +80,40 @@ const Form = ({ getUsers, onEdit, setOnEdit }) => {
         .post("http://localhost:8800", {
           nome: user.nome.value,
           descricao: user.descricao.value,
-          data_hora: user.data_hora.value,
+          data_nascimento: user.data_hora.value,
         })
         .then(({ data }) => toast.success(data))
         .catch(({ data }) => toast.error(data));
     }
 
-    user.nome.value = "";
-    user.descricao.value = "";
-    user.data_hora.value = "";
+      user.nome.value = "";
+      user.descricao.value = "";
+      user.data_hora.value = "";
+  
+      setOnEdit(null);
+      getUsers();
+    };
+  
 
-    setOnEdit(null);
-    getUsers();
-  };
-
-  return (
-    <FormContainer ref={ref} onSubmit={handleSubmit}>
+    return (
+      <FormContainer ref={ref} onSubmit={handleSubmit}>
       <InputArea>
         <Label>Nome</Label>
         <Input name="nome" />
       </InputArea>
       <InputArea>
         <Label>Descrição</Label>
-        <Input name="descricao" />
+        <Input name="email" type="email" />
       </InputArea>
       <InputArea>
-        <Label>Data de Atendimento</Label>
-        <Input name="data_hora" type="date" />
+        <Label>Data para o atendimento</Label>
+        <Input name="data_nascimento" type="date" />
       </InputArea>
 
       <Button type="submit">SALVAR</Button>
     </FormContainer>
-  );
+    );
+
 };
 
 export default Form;
