@@ -26,3 +26,20 @@ export const addUser = (req, res) => {
         return res.status(200).json("Compromisso criado com sucesso!");
     }); 
 };
+
+export const updateUser = (req, res) => {
+    const search = 
+        "UPDATE compromissos SET `nome` = ?, `descricao` = ?, `data_hora` = ? WHERE `id` = ?";
+    
+    const values = [
+        req.body.nome,
+        req.body.descricao,
+        req.data_hora,
+    ];
+
+    db.query(search, [...values, req.params.id], (err) => {
+        if(err) return res.json(err);
+
+        return res.status(200).json("Compromisso atualizado com sucesso!");
+    });
+};
