@@ -7,6 +7,8 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
+const port = process.env.PORT || 8800;
+
 app.use("/", userRoutes)
 
 app.listen(8800)
